@@ -4,6 +4,7 @@
 int main() {
 	char choiceMenuForOneStack;
 	Stack stackFirst;
+	Stack stackSecond = { 1, 2, 3, 4, 5 };
 	while (true) {
 		stackFirst.printMenuForOneStack();
 		std::cin >> choiceMenuForOneStack;
@@ -14,12 +15,12 @@ int main() {
 			std::cout << "Enter element: ";
 			std::cin >> number;
 			stackFirst.push(number);
-			stackFirst.printStack();
+			std::cout << stackFirst;
 			break;
 		}
 		case '2':
 			stackFirst.pop();
-			stackFirst.printStack();
+			std::cout << stackFirst;
 			break;
 		case '3':
 		{
@@ -31,13 +32,37 @@ int main() {
 			break;
 		}
 		case '4':
-			Stack stackSecond;
 			char choiceMenuForMoreStacks;
 			while (true) {
 				stackSecond.printMenuForMoreStacks();
 				std::cin >> choiceMenuForMoreStacks;
+				switch (choiceMenuForMoreStacks){
+				case '1':
+					std::cout << "First Stack elements\n";
+					std::cout << stackFirst;
+					std::cout << "Second Stack elements\n";
+					std::cout << stackSecond;
 
+					stackFirst.assignStacks(stackFirst, stackSecond);
+
+					std::cout << "First Stack elements\n";
+					std::cout << stackFirst;
+					break;
+
+				case '2':
+					if (stackFirst.isEqual(stackFirst, stackSecond)) {
+						std::cout << "The stacks are equal.\n";
+					}
+					else {
+						std::cout << "The stacks are not equal.\n";
+					}
+				}
+				if (choiceMenuForMoreStacks == '3') {
+					break;
+				}
 			}
+		case '5':
+			return 0;
 		}
 	}
 	return 0;
