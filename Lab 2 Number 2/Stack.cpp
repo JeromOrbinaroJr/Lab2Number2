@@ -2,13 +2,8 @@
 #include "Stack.h"
 #include "Node.h"
 
+//Constructor
 Stack::Stack() : top(nullptr) {}
-
-Stack::~Stack() {
-	while (top != nullptr) {
-		pop();
-	}
-}
 
 Stack::Stack(const std::initializer_list<int>& values) : top(nullptr) {
 	for (int value : values) {
@@ -16,6 +11,14 @@ Stack::Stack(const std::initializer_list<int>& values) : top(nullptr) {
 	}
 }
 
+//Destructor
+Stack::~Stack() {
+	while (top != nullptr) {
+		pop();
+	}
+}
+
+//Methods
 void Stack::push(int value) {
 	Node* newNode = new Node;
 	newNode->data = value;
@@ -56,8 +59,7 @@ bool Stack::isEmpty() {
 	return top == nullptr;
 }
 
-void Stack::printStack(std::ostream& os) const {
-	os << "Stack elements:" << std::endl;
+void Stack::printStack(std::ostream& os) const {;
 	Node* current = top;
 	while (current != nullptr) {
 		os << current->data << std::endl;
@@ -69,6 +71,7 @@ std::ostream& operator<<(std::ostream& os, Stack& stack) {
 	if (stack.isEmpty()) {
 		os << "Stack is empty." << std::endl;
 	}
+	os << "Stack elements:" << std::endl;
 	stack.printStack(os);
 	return os;
 }

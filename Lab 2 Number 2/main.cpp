@@ -28,7 +28,7 @@ int main() {
 			std::cout << "Enter numeric parameter: ";
 			std::cin >> number;
 			stackFirst.mulVertex(number);
-
+			std::cout << stackFirst;
 			break;
 		}
 		case '4':
