@@ -2,7 +2,7 @@
 #include "Stack.h"
 #include "Node.h"
 
-//Constructor
+//Constructors
 Stack::Stack() : top(nullptr) {}
 
 Stack::Stack(const std::initializer_list<int>& values) : top(nullptr) {
