@@ -4,7 +4,8 @@
 int main() {
 	char choiceMenuForOneStack;
 	Stack stackFirst;
-	Stack stackSecond = { 1, 2, 3, 4, 5 };
+	Stack stackSecond = { 5, 4, 3, 2, 1 };
+
 	while (true) {
 		stackFirst.printMenuForOneStack();
 		std::cin >> choiceMenuForOneStack;
@@ -54,8 +55,7 @@ int main() {
 					case '2':
 						if (stackFirst.isEqual(stackFirst, stackSecond)) {
 							std::cout << "The stacks are equal.\n";
-						}
-						else {
+						} else {
 							std::cout << "The stacks are not equal.\n";
 						}
 					}

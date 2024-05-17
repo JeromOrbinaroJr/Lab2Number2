@@ -3,9 +3,9 @@
 #include "Node.h"
 
 //Constructors
-Stack::Stack() : top(nullptr) {}
+Stack::Stack() : m_top(nullptr) {}
 
-Stack::Stack(const std::initializer_list<int>& values) : top(nullptr) {
+Stack::Stack(const std::initializer_list<int>& values) : m_top(nullptr) {
 	for (int value : values) {
 		push(value);
 	}
@@ -13,7 +13,7 @@ Stack::Stack(const std::initializer_list<int>& values) : top(nullptr) {
 
 //Destructor
 Stack::~Stack() {
-	while (top != nullptr) {
+	while (m_top != nullptr) {
 		pop();
 	}
 }
@@ -22,22 +22,22 @@ Stack::~Stack() {
 void Stack::push(int value) {
 	Node* newNode = new Node;
 	newNode->data = value;
-	newNode->next = top;
-	top = newNode;
+	newNode->next = m_top;
+	m_top = newNode;
 }
 
-void Stack::push(double value) {
-	Node* newNode = new Node;
-	newNode->data = value;
-	newNode->next = top;
-	top = newNode;
-}
+//void Stack::push(double value) {
+//	Node* newNode = new Node;
+//	newNode->data = value;
+//	newNode->next = m_top;
+//	m_top = newNode;
+//}
 
 void Stack::pop() {
 	try {
 		if (isEmpty()) { throw; }
-		Node* temp = top;
-		top = top->next;
+		Node* temp = m_top;
+		m_top = m_top->next;
 		delete temp;
 	} catch (std::exception ex) {
 		std::cout << "Stack is empty, Cannot pop." << std::endl;
@@ -48,7 +48,7 @@ void Stack::pop() {
 int Stack::peek() {
 	try {
 		if (isEmpty()) { throw; }
-		return top->data;
+		return m_top->data;
 	} catch (std::exception ex) {
 		std::cout << "Stack is empty. Cannot peek." << std::endl;
 		return -1;
@@ -56,45 +56,35 @@ int Stack::peek() {
 }
 
 bool Stack::isEmpty() {
-	return top == nullptr;
+	return m_top == nullptr;
 }
 
-void Stack::printStack(std::ostream& os) const {;
-	Node* current = top;
+void Stack::printStack(std::ostream& os) const {
+	Node* current = m_top;
 	while (current != nullptr) {
 		os << current->data << std::endl;
 		current = current->next;
 	}
 }
 
-std::ostream& operator<<(std::ostream& os, Stack& stack) {
-	if (stack.isEmpty()) {
-		os << "Stack is empty." << std::endl;
-	}
-	os << "Stack elements:" << std::endl;
-	stack.printStack(os);
-	return os;
-}
-
-
 void Stack::mulVertex(int value) {
 	try{
 		if (isEmpty()) { throw value; }
-		top->data *= value;
+		m_top->data *= value;
 	}
 	catch (int value) {
 		std::cout << "Stack is empty.\n";
 	}
 }
-void Stack::mulVertex(double value) {
-	try {
-		if (isEmpty()) { throw value; }
-		top->data *= value;
-	}
-	catch (int value) {
-		std::cout << "Stack is empty.\n";
-	}
-}
+//void Stack::mulVertex(double value) {
+//	try {
+//		if (isEmpty()) { throw value; }
+//		m_top->data *= value;
+//	}
+//	catch (int value) {
+//		std::cout << "Stack is empty.\n";
+//	}
+//}
 
 void Stack::assignStacks(Stack& inStack, Stack& outStack) {
 	while (!inStack.isEmpty()) {
@@ -108,7 +98,7 @@ void Stack::assignStacks(Stack& inStack, Stack& outStack) {
 
 int Stack::size() const {
 	int count = 0;
-	Node* current = top;
+	Node* current = m_top;
 	while (current != nullptr) {
 		count++;
 		current = current->next;
@@ -145,4 +135,14 @@ void Stack::printMenuForMoreStacks() {
 	std::cout << "1) Assign stack First to stack Second.\n";
 	std::cout << "2) Are the two stacks equal?\n";
 	std::cout << "3) Return to menu for one stack.\n";
+}
+
+//Operators Overloading
+std::ostream& operator<<(std::ostream& os, Stack& stack) {
+	if (stack.isEmpty()) {
+		os << "Stack is empty." << std::endl;
+	}
+	os << "Stack elements:" << std::endl;
+	stack.printStack(os);
+	return os;
 }
