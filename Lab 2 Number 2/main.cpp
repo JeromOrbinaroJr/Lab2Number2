@@ -2,7 +2,7 @@
 #include "Stack.h"
 
 int main() {
-	char choiceMenuForOneStack;
+	int choiceMenuForOneStack;
 	Stack stackFirst;
 	Stack stackSecond = { 5, 4, 3, 2, 1 };
 
@@ -10,7 +10,7 @@ int main() {
 		stackFirst.printMenuForOneStack();
 		std::cin >> choiceMenuForOneStack;
 		try {
-			if (choiceMenuForOneStack <= 0 && choiceMenuForOneStack > 5) { throw choiceMenuForOneStack; }
+			if (choiceMenuForOneStack < 1 || choiceMenuForOneStack > 5) { throw choiceMenuForOneStack; }
 			switch (choiceMenuForOneStack) {
 			case '1':
 			{
@@ -67,7 +67,8 @@ int main() {
 				return 0;
 			}
 		}
-		catch (int choiceMenuForOneStack) {
+		catch (std::exception ex){
+			throw;
 			std::cout << "Error" << std::endl;
 		}
 	}
