@@ -7,7 +7,7 @@ public:
 	//Constructors
 	Stack();
 	Stack(const std::initializer_list<int>& values);
-	Stack(const Stack& other);
+	Stack(const Stack& other); // copy ctr
 
 	//Destructor
 	~Stack();

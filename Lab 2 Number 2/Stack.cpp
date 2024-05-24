@@ -74,9 +74,7 @@ void Stack::printStack(std::ostream& os) const {
 }
 
 void Stack::assignStacks(Stack& otherStack) {
-	while (!isEmpty()) {
-		pop();
-	}
+	while (!isEmpty()) { pop(); }
 	while (!otherStack.isEmpty()) {
 		push(otherStack.peek());
 		otherStack.pop();

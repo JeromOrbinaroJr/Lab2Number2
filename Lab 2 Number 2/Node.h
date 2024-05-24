@@ -2,5 +2,5 @@
 
 struct Node {
 	int data; //value
-	Node* next{nullptr}; //ref next elem
+	Node* next{nullptr}; //ptr next elem
 };

@@ -54,10 +54,6 @@ int main() {
                             std::cout << "The stacks are not equal.\n";
                         }
                         break;
-
-                    case '3':
-                        break;
-
                     default:
                         std::cout << "Error!" << std::endl;
                         break;
