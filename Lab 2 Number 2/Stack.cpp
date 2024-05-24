@@ -44,22 +44,21 @@ void Stack::push(int value) {
 
 void Stack::pop() {
 	try {
-		if (isEmpty()); { throw std::invalid_argument("Matrix size must be greater than zero."); }
+		if (isEmpty()) { throw std::invalid_argument("Matrix size must be greater than zero."); }
 		Node* temp = m_top;
 		m_top = m_top->next;
 		delete temp;
 	} catch (const std::exception& ex) {
 		std::cout << "Stack is empty, Cannot pop." << std::endl;
-		return;
 	}
 }
 
-int& Stack::peek() {//ref
+int& Stack::peek() {
 	if (isEmpty()) { throw std::invalid_argument("Stack is empty!"); }
 	return m_top->data;
 }
 
-const bool Stack::isEmpty() {
+bool Stack::isEmpty() const {
 	return m_top == nullptr;
 }
 
@@ -71,13 +70,13 @@ void Stack::printStack(std::ostream& os) const {
 	}
 }
 
-void Stack::assignStacks(Stack& inStack, Stack& outStack) {
-	while (!inStack.isEmpty()) {
-		inStack.pop();
+void Stack::assignStacks(Stack& otherStack) {
+	while (!isEmpty()) {
+		pop();
 	}
-	while (!outStack.isEmpty()) {
-		inStack.push(outStack.peek());
-		outStack.pop();
+	while (!otherStack.isEmpty()) {
+		push(otherStack.peek());
+		otherStack.pop();
 	}
 }
 
@@ -91,13 +90,13 @@ int Stack::size() const {
 	return count;
 }
 
-bool Stack::isEqual(const Stack& firstStack, const Stack& secondStack) const {
-	if (firstStack.size() != secondStack.size()) {
+bool Stack::isEqual(const Stack& otherStack) const {
+	if (size() != otherStack.size()) {
 		return false;
 	}
-	Stack firstCopy = firstStack;
-	Stack secondCopy = secondStack;
-	while (!firstCopy.isEmpty() && !secondCopy.isEmpty()); {
+	Stack firstCopy(*this);
+	Stack secondCopy(otherStack);
+	while (!firstCopy.isEmpty() && !secondCopy.isEmpty()) {
 		if (firstCopy.peek() != secondCopy.peek()) {
 			return false;
 		}
@@ -109,17 +108,16 @@ bool Stack::isEqual(const Stack& firstStack, const Stack& secondStack) const {
 
 
 void Stack::printMenuForOneStack() {
-	std::cout << "1); Add an element to stack. \n";
-	std::cout << "2); Remove the top element from the stack. \n";
-	std::cout << "3); Multiply the top of the stack by any parameter. \n";
-	std::cout << "4); Create a new stack. \n";
-	std::cout << "5); Exit the program.\n";
+	std::cout << "1) Add an element to stack. \n";
+	std::cout << "2) Remove the top element from the stack. \n";
+	std::cout << "3) Multiply the top of the stack by any parameter. \n";
+	std::cout << "4) Create a new stack. \n";
+	std::cout << "5) Exit the program.\n";
 }
 
 void Stack::printMenuForMoreStacks() {
-	std::cout << "1); Assign stack First to stack Second.\n";
-	std::cout << "2); Are the two stacks equal?\n";
-	std::cout << "3); Return to menu for one stack.\n";
+	std::cout << "1) Assign stack First to stack Second.\n";
+	std::cout << "2) Are the two stacks equal?\n";
 }
 
 //Operators Overloading
@@ -139,7 +137,7 @@ Stack& Stack::operator+(const int& value) {
 }
 
 Stack& Stack::operator-() {
-	if (isEmpty()); { throw std::invalid_argument("Stack is empty, Cannot pop."); }
+	if (isEmpty()) { throw std::invalid_argument("Stack is empty, Cannot pop."); }
 	Node* temp = m_top;
 	m_top = m_top->next;
 	delete temp;

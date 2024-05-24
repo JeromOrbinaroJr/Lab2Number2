@@ -17,10 +17,11 @@ public:
 	void pop();
 	int& peek();
 	int size() const;
-	const bool isEmpty();
-	bool isEqual(const Stack& firstStack, const Stack& secondStack) const;//?
+	bool isEmpty() const;
+	bool isEqual(const Stack& otherStack) const;
 	void printStack(std::ostream& os) const;
-	void assignStacks(Stack& inStack, Stack& outStack);//?
+	void assignStacks(Stack& otherStack);
+	//Menu
 	void printMenuForOneStack();
 	void printMenuForMoreStacks();
 

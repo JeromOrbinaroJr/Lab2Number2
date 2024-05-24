@@ -41,13 +41,13 @@ int main() {
                         std::cout << stackFirst;
                         std::cout << "Second Stack elements\n";
                         std::cout << stackSecond;
-                        stackFirst.assignStacks(stackFirst, stackSecond);
+                        stackFirst.assignStacks(stackSecond);
                         std::cout << "First Stack elements\n";
                         std::cout << stackFirst;
                         break;
 
                     case '2':
-                        if (stackFirst.isEqual(stackFirst, stackSecond)) {
+                        if (stackFirst.isEqual(stackSecond)) {
                             std::cout << "The stacks are equal.\n";
                         }
                         else {
