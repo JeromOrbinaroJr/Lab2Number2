@@ -73,7 +73,6 @@ void Stack::printStack(std::ostream& os) const {
 	}
 }
 
-
 int Stack::size() const {
 	int count = 0;
 	Node* current = m_top;
@@ -99,7 +98,6 @@ int Stack::size() const {
 //	}
 //	return true;
 //}
-
 
 void Stack::printMenuForOneStack() {
 	std::cout << "1) Add an element to stack. \n";
@@ -154,9 +152,7 @@ Stack& Stack::operator=(Stack& otherStack) {
 }
 
 bool Stack::operator==(const Stack& otherStack) const {
-	if (size() != otherStack.size()) {
-		return false;
-	}
+	if (size() != otherStack.size()) { return false; }
 	Node* thisCurrent = m_top;
 	Node* otherCurrent = otherStack.m_top;
 	while (thisCurrent != nullptr && otherCurrent != nullptr) {
@@ -170,9 +166,7 @@ bool Stack::operator==(const Stack& otherStack) const {
 }
 
 bool Stack::operator!=(const Stack& otherStack) const {
-	if (size() != otherStack.size()) {
-		return true;
-	}
+	if (size() != otherStack.size()) { return true; }
 	Node* thisCurrent = m_top;
 	Node* otherCurrent = otherStack.m_top;
 	while (thisCurrent != nullptr && otherCurrent != nullptr) {
