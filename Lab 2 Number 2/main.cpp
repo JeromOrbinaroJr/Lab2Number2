@@ -14,7 +14,7 @@ int main() {
                 int number;
                 std::cout << "Enter element: ";
                 std::cin >> number;
-                stackFirst + number;
+                stackFirst += number;
                 std::cout << stackFirst;
                 break;
             }
@@ -41,13 +41,13 @@ int main() {
                         std::cout << stackFirst;
                         std::cout << "Second Stack elements\n";
                         std::cout << stackSecond;
-                        stackFirst.assignStacks(stackSecond);
+                        stackFirst = stackSecond;
                         std::cout << "First Stack elements\n";
                         std::cout << stackFirst;
                         break;
 
                     case '2':
-                        if (stackFirst.isEqual(stackSecond)) {
+                        if (stackFirst==stackSecond) {
                             std::cout << "The stacks are equal.\n";
                         }
                         else {

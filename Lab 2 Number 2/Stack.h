@@ -18,9 +18,7 @@ public:
 	int& peek();
 	int size() const;
 	bool isEmpty() const;
-	bool isEqual(const Stack& otherStack) const;
 	void printStack(std::ostream& os) const;
-	void assignStacks(Stack& otherStack);
 
 	//Menu
 	void printMenuForOneStack();
@@ -28,9 +26,12 @@ public:
 
 	//Operator Overloading
 	friend std::ostream& operator<<(std::ostream& os, Stack& stack);
-	Stack& operator+(const int& value);
+	Stack& operator+=(const int& value);
 	Stack& operator-();
 	Stack& operator*(const int& value);
+	Stack& operator=(Stack& otherStack);
+	bool operator==(const Stack& otherStack) const;
+	bool operator!=(const Stack& otherStack) const;
 
 private:
 	Node* m_top;

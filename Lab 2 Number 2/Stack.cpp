@@ -73,13 +73,6 @@ void Stack::printStack(std::ostream& os) const {
 	}
 }
 
-void Stack::assignStacks(Stack& otherStack) {
-	while (!isEmpty()) { pop(); }
-	while (!otherStack.isEmpty()) {
-		push(otherStack.peek());
-		otherStack.pop();
-	}
-}
 
 int Stack::size() const {
 	int count = 0;
@@ -91,21 +84,21 @@ int Stack::size() const {
 	return count;
 }
 
-bool Stack::isEqual(const Stack& otherStack) const {
-	if (size() != otherStack.size()) {
-		return false;
-	}
-	Stack firstCopy(*this);
-	Stack secondCopy(otherStack);
-	while (!firstCopy.isEmpty() && !secondCopy.isEmpty()) {
-		if (firstCopy.peek() != secondCopy.peek()) {
-			return false;
-		}
-		firstCopy.pop();
-		secondCopy.pop();
-	}
-	return true;
-}
+//bool Stack::isEqual(const Stack& otherStack) const {
+//	if (size() != otherStack.size()) {
+//		return false;
+//	}
+//	Stack firstCopy(*this);
+//	Stack secondCopy(otherStack);
+//	while (!firstCopy.isEmpty() && !secondCopy.isEmpty()) {
+//		if (firstCopy.peek() != secondCopy.peek()) {
+//			return false;
+//		}
+//		firstCopy.pop();
+//		secondCopy.pop();
+//	}
+//	return true;
+//}
 
 
 void Stack::printMenuForOneStack() {
@@ -129,7 +122,7 @@ std::ostream& operator<<(std::ostream& os, Stack& stack) {
 	return os;
 }
 
-Stack& Stack::operator+(const int& value) {
+Stack& Stack::operator+=(const int& value) {
 	Node* newNode = new Node;
 	newNode->data = value;
 	newNode->next = m_top;
@@ -150,3 +143,46 @@ Stack& Stack::operator*(const int& value) {
 	m_top->data *= value;
 	return *this;
 }
+
+Stack& Stack::operator=(Stack& otherStack) {
+	while (!isEmpty()) { pop(); }
+	while (!otherStack.isEmpty()) {
+		push(otherStack.peek());
+		otherStack.pop();
+	}
+	return *this;
+}
+
+bool Stack::operator==(const Stack& otherStack) const {
+	if (size() != otherStack.size()) {
+		return false;
+	}
+	Node* thisCurrent = m_top;
+	Node* otherCurrent = otherStack.m_top;
+	while (thisCurrent != nullptr && otherCurrent != nullptr) {
+		if (thisCurrent->data != otherCurrent->data) {
+			return false;
+		}
+		thisCurrent = thisCurrent->next;
+		otherCurrent = otherCurrent->next;
+	}
+	return true;
+}
+
+bool Stack::operator!=(const Stack& otherStack) const {
+	if (size() != otherStack.size()) {
+		return true;
+	}
+	Node* thisCurrent = m_top;
+	Node* otherCurrent = otherStack.m_top;
+	while (thisCurrent != nullptr && otherCurrent != nullptr) {
+		if (thisCurrent->data != otherCurrent->data) {
+			return true;
+		}
+		thisCurrent = thisCurrent->next;
+		otherCurrent = otherCurrent->next;
+	}
+	return false;
+}
+
+
