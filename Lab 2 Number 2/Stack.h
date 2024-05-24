@@ -21,6 +21,7 @@ public:
 	bool isEqual(const Stack& otherStack) const;
 	void printStack(std::ostream& os) const;
 	void assignStacks(Stack& otherStack);
+
 	//Menu
 	void printMenuForOneStack();
 	void printMenuForMoreStacks();

@@ -43,20 +43,23 @@ void Stack::push(int value) {
 }
 
 void Stack::pop() {
-	try {
-		if (isEmpty()) { throw std::invalid_argument("Matrix size must be greater than zero."); }
-		Node* temp = m_top;
-		m_top = m_top->next;
-		delete temp;
-	} catch (const std::exception& ex) {
+	if (isEmpty()) {
 		std::cout << "Stack is empty, Cannot pop." << std::endl;
+		throw std::runtime_error("Stack is empty, Cannot pop.");
 	}
+	Node* temp = m_top;
+	m_top = m_top->next;
+	delete temp;
 }
 
 int& Stack::peek() {
-	if (isEmpty()) { throw std::invalid_argument("Stack is empty!"); }
+	if (isEmpty()) {
+		std::cout << "Stack is empty!" << std::endl;
+		throw std::runtime_error("Stack is empty!");
+	}
 	return m_top->data;
 }
+
 
 bool Stack::isEmpty() const {
 	return m_top == nullptr;

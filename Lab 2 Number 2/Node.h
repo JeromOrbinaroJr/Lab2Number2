@@ -1,6 +1,6 @@
 #pragma once
 
 struct Node {
-	int data;
-	Node* next{nullptr};
+	int data; //value
+	Node* next{nullptr}; //ref next elem
 };
